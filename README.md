@@ -6,9 +6,11 @@ A modern, responsive Angular web application for elite training and coaching ser
 
 - **Fully Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Modern UI/UX**: Bold athletic design with smooth animations and transitions
-- **Six Complete Pages**:
+- **Payment Integration**: Stripe and PayPal support for training packages (demo mode)
+- **Seven Complete Pages**:
   - Home: Hero section, features, stats, and call-to-action
   - Registration: Complete registration form with validation
+  - Pricing: Training packages with secure payment integration
   - Schedule: Weekly class schedule with filtering
   - Coaches: Team profiles with expertise and certifications
   - Media: Gallery of videos, images, and articles
@@ -49,14 +51,14 @@ The application will be available at `http://localhost:4200`
 npm run build:prod
 ```
 
-This creates production-ready files in the `dist/epavlenko-app` directory.
+This creates production-ready files in the `dist/sport-app` directory.
 
 ### Build Configuration
 
 The app is configured to deploy to `https://epavlenko.dev/` with the following settings:
 
 - Base href: `/`
-- Output directory: `dist/epavlenko-app`
+- Output directory: `dist/sport-app`
 - Optimized bundles with code splitting
 - Minified CSS and JavaScript
 - Hash-based cache busting
@@ -70,7 +72,7 @@ The app is configured to deploy to `https://epavlenko.dev/` with the following s
    npm run build:prod
    ```
 
-2. Upload contents of `dist/epavlenko-app/` to your web server
+2. Upload contents of `dist/sport-app/` to your web server
 
 3. Configure your web server to:
    - Serve `index.html` for all routes (for Angular routing)
@@ -84,7 +86,7 @@ The app is configured to deploy to `https://epavlenko.dev/` with the following s
    npm run build:prod
    ```
 
-2. Deploy the `dist/epavlenko-app` directory
+2. Deploy the `dist/sport-app` directory
 
 3. Add redirect rules for SPA routing:
    - Netlify: Add `_redirects` file with `/* /index.html 200`
@@ -152,7 +154,7 @@ server {
 ## Project Structure
 
 ```
-epavlenko-app/
+sport-app/
 ├── src/
 │   ├── app/
 │   │   ├── components/
@@ -161,10 +163,13 @@ epavlenko-app/
 │   │   ├── pages/
 │   │   │   ├── home/            # Home page
 │   │   │   ├── registration/    # Registration form
+│   │   │   ├── pricing/         # Pricing & payments
 │   │   │   ├── schedule/        # Class schedule
 │   │   │   ├── coaches/         # Coach profiles
 │   │   │   ├── media/           # Media gallery
 │   │   │   └── terms/           # Terms & Conditions
+│   │   ├── services/
+│   │   │   └── payment.service.ts  # Payment integration
 │   │   ├── app.component.*      # Root component
 │   │   ├── app.config.ts        # App configuration
 │   │   └── app.routes.ts        # Route definitions
@@ -175,6 +180,7 @@ epavlenko-app/
 ├── angular.json                 # Angular configuration
 ├── package.json                 # Dependencies
 ├── tsconfig.json                # TypeScript config
+├── PAYMENT-INTEGRATION.md       # Payment setup guide
 └── README.md                    # This file
 ```
 
@@ -202,6 +208,27 @@ epavlenko-app/
 - Safari (latest)
 - Edge (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Payment Integration
+
+The app includes a complete payment system for training packages:
+
+- **Stripe Integration**: Credit/Debit card payments
+- **PayPal Integration**: PayPal payments  
+- **5 Training Packages**: From single sessions to unlimited monthly plans
+- **Secure Payment Modal**: Professional checkout experience
+- **Success/Error Handling**: Complete payment flow
+
+**Current Status**: Demo mode - See `PAYMENT-INTEGRATION.md` for production setup
+
+### Quick Payment Setup
+
+1. Get API keys from Stripe and PayPal
+2. Update keys in `/src/app/services/payment.service.ts`
+3. Create backend API endpoints (examples provided in docs)
+4. Configure webhooks for payment confirmations
+
+See **PAYMENT-INTEGRATION.md** for complete setup instructions.
 
 ## License
 

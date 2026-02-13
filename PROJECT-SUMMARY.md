@@ -128,7 +128,7 @@ A fully responsive, production-ready Angular web application built for elite tra
 ## 📁 Project Structure
 
 ```
-epavlenko-app/
+sport-app/
 ├── src/
 │   ├── app/
 │   │   ├── components/
@@ -163,7 +163,7 @@ epavlenko-app/
 ### Installation
 
 ```bash
-cd epavlenko-app
+cd sport-app
 npm install
 ```
 
@@ -178,7 +178,7 @@ npm start
 
 ```bash
 npm run build:prod
-# Output: dist/epavlenko-app/
+# Output: dist/sport-app/
 ```
 
 ## 📦 Deployment
@@ -190,7 +190,7 @@ npm run build:prod
    npm run build:prod
    ```
 
-2. Upload contents of `dist/epavlenko-app/` to web server
+2. Upload contents of `dist/sport-app/` to web server
 
 3. Ensure server configuration:
    - Serve index.html for all routes

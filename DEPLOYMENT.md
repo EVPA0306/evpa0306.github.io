@@ -5,16 +5,16 @@
 ### Step 1: Build the Application
 
 ```bash
-cd epavlenko-app
+cd sport-app
 npm install
 npm run build:prod
 ```
 
-This creates optimized production files in `dist/epavlenko-app/`
+This creates optimized production files in `dist/sport-app/`
 
 ### Step 2: Upload to Your Web Server
 
-Upload the entire contents of `dist/epavlenko-app/` to your web server's public directory (typically `public_html/`, `www/`, or `htdocs/`).
+Upload the entire contents of `dist/sport-app/` to your web server's public directory (typically `public_html/`, `www/`, or `htdocs/`).
 
 **Files to upload:**
 - index.html
@@ -70,7 +70,7 @@ server {
 
 1. Log into cPanel
 2. Use File Manager to navigate to `public_html/`
-3. Upload all files from `dist/epavlenko-app/`
+3. Upload all files from `dist/sport-app/`
 4. Ensure `.htaccess` is uploaded and visible
 5. Set file permissions: 644 for files, 755 for directories
 
@@ -80,7 +80,7 @@ server {
 # Using FTP client (FileZilla, Cyberduck, etc.)
 1. Connect to your server
 2. Navigate to public directory
-3. Upload contents of dist/epavlenko-app/
+3. Upload contents of dist/sport-app/
 4. Preserve file structure
 5. Upload .htaccess file
 ```
@@ -162,7 +162,7 @@ To update the site:
 
 1. Make changes locally
 2. Run `npm run build:prod`
-3. Upload new files from `dist/epavlenko-app/`
+3. Upload new files from `dist/sport-app/`
 4. Clear browser cache to see changes
 
 ## Performance Optimization
