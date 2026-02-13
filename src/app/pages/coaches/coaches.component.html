@@ -1,0 +1,59 @@
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title fade-in-up">OUR COACHES</h1>
+    <p class="page-subtitle fade-in-up">Meet the elite team dedicated to your success</p>
+  </div>
+</section>
+
+<section class="section coaches-intro">
+  <div class="container text-center">
+    <h2 class="section-title">WORLD-CLASS EXPERTISE</h2>
+    <p class="intro-text">Our coaching staff represents decades of combined experience in elite athletic development. Each coach brings unique expertise, proven methodologies, and an unwavering commitment to helping you achieve your goals.</p>
+  </div>
+</section>
+
+<section class="section coaches-section">
+  <div class="container">
+    <div class="coaches-grid">
+      <div class="coach-card" *ngFor="let coach of coaches; let i = index" [style.animation-delay.ms]="i * 150">
+        <div class="coach-image">
+          <div class="image-placeholder">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="experience-badge">{{ coach.experience }}</div>
+        </div>
+
+        <div class="coach-content">
+          <h3 class="coach-name">{{ coach.name }}</h3>
+          <p class="coach-title">{{ coach.title }}</p>
+
+          <div class="specialties">
+            <span class="specialty-tag" *ngFor="let specialty of coach.specialties">
+              {{ specialty }}
+            </span>
+          </div>
+
+          <p class="coach-bio">{{ coach.bio }}</p>
+
+          <div class="certifications">
+            <h4>Certifications</h4>
+            <ul>
+              <li *ngFor="let cert of coach.certifications">{{ cert }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2 class="cta-title">TRAIN WITH THE BEST</h2>
+    <p class="cta-subtitle">Ready to work with our expert coaching team?</p>
+    <a routerLink="/registration" class="btn btn-primary btn-large">Start Your Journey</a>
+  </div>
+</section>

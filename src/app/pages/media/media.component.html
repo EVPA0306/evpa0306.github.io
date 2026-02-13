@@ -1,0 +1,68 @@
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title fade-in-up">MEDIA & RESOURCES</h1>
+    <p class="page-subtitle fade-in-up">Videos, photos, and articles from our training community</p>
+  </div>
+</section>
+
+<section class="section media-section">
+  <div class="container">
+    <!-- Filter Buttons -->
+    <div class="filter-bar">
+      <button 
+        *ngFor="let filter of filters"
+        class="filter-btn"
+        [class.active]="selectedFilter === filter.value"
+        (click)="setFilter(filter.value)">
+        {{ filter.label }}
+      </button>
+    </div>
+
+    <!-- Media Grid -->
+    <div class="media-grid" *ngIf="getFilteredMedia().length > 0">
+      <div class="media-card" *ngFor="let item of getFilteredMedia(); let i = index" [style.animation-delay.ms]="i * 100">
+        <div class="media-thumbnail">
+          <div class="thumbnail-placeholder">
+            <span class="media-type-icon">{{ getMediaIcon(item.type) }}</span>
+            <div class="media-type-badge">{{ item.type }}</div>
+          </div>
+        </div>
+
+        <div class="media-content">
+          <div class="media-meta">
+            <span class="media-category">{{ item.category }}</span>
+            <span class="media-date">{{ item.date }}</span>
+          </div>
+
+          <h3 class="media-title">{{ item.title }}</h3>
+          <p class="media-description">{{ item.description }}</p>
+
+          <button class="media-btn">
+            <span *ngIf="item.type === 'video'">Watch Video</span>
+            <span *ngIf="item.type === 'image'">View Gallery</span>
+            <span *ngIf="item.type === 'article'">Read Article</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-results" *ngIf="getFilteredMedia().length === 0">
+      <p>No media items found in this category.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container text-center">
+    <h2 class="newsletter-title">STAY UPDATED</h2>
+    <p class="newsletter-subtitle">Subscribe to receive the latest training tips, videos, and updates</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Enter your email" class="newsletter-input">
+      <button class="btn btn-primary">Subscribe</button>
+    </div>
+  </div>
+</section>

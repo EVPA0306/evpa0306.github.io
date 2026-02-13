@@ -1,0 +1,201 @@
+.page-header {
+  background: linear-gradient(135deg, var(--secondary) 0%, #1a1a1a 100%);
+  padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+  text-align: center;
+  color: var(--text-inverse);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.page-title {
+  color: var(--text-inverse);
+  margin-bottom: var(--spacing-sm);
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.coaches-intro {
+  background: var(--bg-white);
+  padding: var(--spacing-xl) 0;
+  margin-top: 80px;
+}
+
+.intro-text {
+  max-width: 800px;
+  margin: var(--spacing-md) auto 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.coaches-section {
+  background: var(--bg-light);
+  padding: var(--spacing-2xl) 0;
+}
+
+.coaches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.coach-card {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  animation: fadeInUp 0.8s ease-out backwards;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.coach-image {
+  position: relative;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    opacity: 0.2;
+    stroke: var(--text-secondary);
+  }
+}
+
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.experience-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--primary);
+  color: var(--text-inverse);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(255, 59, 59, 0.3);
+}
+
+.coach-content {
+  padding: var(--spacing-md);
+}
+
+.coach-name {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.coach-title {
+  font-size: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.specialty-tag {
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+
+.coach-bio {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-md);
+  font-size: 0.95rem;
+}
+
+.certifications {
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-sm);
+  
+  h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    
+    li {
+      background: var(--accent);
+      color: var(--text-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header {
+    padding: calc(70px + var(--spacing-lg)) 0 var(--spacing-md);
+  }
+  
+  .coaches-intro {
+    margin-top: 70px;
+  }
+  
+  .coaches-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .coach-image {
+    height: 220px;
+  }
+  
+  .intro-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coach-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .coach-name {
+    font-size: 1.5rem;
+  }
+}

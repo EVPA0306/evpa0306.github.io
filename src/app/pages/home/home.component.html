@@ -1,0 +1,82 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content fade-in-up">
+      <h1 class="hero-title">UNLEASH YOUR<br><span class="highlight">POTENTIAL</span></h1>
+      <p class="hero-subtitle">Elite training programs designed to transform athletes into champions</p>
+      <div class="hero-cta">
+        <a routerLink="/registration" class="btn btn-primary">Start Your Journey</a>
+        <a routerLink="/schedule" class="btn btn-outline">View Schedule</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll to explore</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let stat of stats; let i = index" [style.animation-delay.ms]="i * 100">
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section features-section">
+  <div class="container">
+    <div class="section-header text-center mb-lg">
+      <h2 class="section-title">WHY CHOOSE US</h2>
+      <p class="section-subtitle">Excellence in every aspect of training</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features; let i = index" [style.animation-delay.ms]="i * 150">
+        <div class="feature-icon">{{ feature.icon }}</div>
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-description">{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container text-center">
+    <h2 class="cta-title">READY TO GET STARTED?</h2>
+    <p class="cta-subtitle">Join hundreds of athletes who have transformed their performance</p>
+    <a routerLink="/registration" class="btn btn-primary btn-large">Register Now</a>
+  </div>
+</section>
+
+<!-- About Preview Section -->
+<section class="section about-preview">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content slide-in-left">
+        <h2 class="section-title">TRANSFORM YOUR<br>PERFORMANCE</h2>
+        <p>At EPavlenko, we believe every athlete has untapped potential waiting to be discovered. Our comprehensive training programs combine cutting-edge sports science with time-tested coaching methodologies to deliver exceptional results.</p>
+        <p>Whether you're a beginner looking to build a strong foundation or an experienced athlete aiming for peak performance, our expert coaches will guide you every step of the way.</p>
+        <a routerLink="/coaches" class="btn btn-secondary">Meet Our Coaches</a>
+      </div>
+      <div class="about-image slide-in-right">
+        <div class="image-placeholder">
+          <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          <p>Professional training environment</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

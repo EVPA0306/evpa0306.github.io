@@ -1,59 +1,214 @@
-# SportApp
+# EPavlenko - Elite Training Web Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+A modern, responsive Angular web application for elite training and coaching services.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Fully Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Modern UI/UX**: Bold athletic design with smooth animations and transitions
+- **Six Complete Pages**:
+  - Home: Hero section, features, stats, and call-to-action
+  - Registration: Complete registration form with validation
+  - Schedule: Weekly class schedule with filtering
+  - Coaches: Team profiles with expertise and certifications
+  - Media: Gallery of videos, images, and articles
+  - Terms & Conditions: Comprehensive legal documentation
 
-```bash
-ng serve
-```
+## Technology Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Framework**: Angular 17 (standalone components)
+- **Styling**: SCSS with custom design system
+- **Fonts**: Bebas Neue (display) + IBM Plex Sans (body)
+- **Icons**: Inline SVG icons
+- **Animations**: CSS animations and transitions
 
-## Code scaffolding
+## Local Development
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- Node.js 18+ and npm
+- Angular CLI 17+
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Installation
 
 ```bash
-ng test
+# Install dependencies
+npm install
+
+# Start development server
+npm start
 ```
 
-## Running end-to-end tests
+The application will be available at `http://localhost:4200`
 
-For end-to-end (e2e) testing, run:
+## Building for Production
+
+### Standard Build
 
 ```bash
-ng e2e
+npm run build:prod
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+This creates production-ready files in the `dist/epavlenko-app` directory.
 
-## Additional Resources
+### Build Configuration
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The app is configured to deploy to `https://epavlenko.dev/` with the following settings:
+
+- Base href: `/`
+- Output directory: `dist/epavlenko-app`
+- Optimized bundles with code splitting
+- Minified CSS and JavaScript
+- Hash-based cache busting
+
+## Deployment to epavlenko.dev
+
+### Option 1: Standard Web Hosting
+
+1. Build the production version:
+   ```bash
+   npm run build:prod
+   ```
+
+2. Upload contents of `dist/epavlenko-app/` to your web server
+
+3. Configure your web server to:
+   - Serve `index.html` for all routes (for Angular routing)
+   - Enable gzip compression
+   - Set appropriate cache headers
+
+### Option 2: Static Hosting (Netlify, Vercel, etc.)
+
+1. Build the production version:
+   ```bash
+   npm run build:prod
+   ```
+
+2. Deploy the `dist/epavlenko-app` directory
+
+3. Add redirect rules for SPA routing:
+   - Netlify: Add `_redirects` file with `/* /index.html 200`
+   - Vercel: Add `vercel.json` with rewrites configuration
+
+### Apache .htaccess Configuration
+
+If deploying to Apache, add this `.htaccess` file to your root directory:
+
+```apache
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Enable Gzip compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Cache static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+```
+
+### Nginx Configuration
+
+For Nginx servers:
+
+```nginx
+server {
+    listen 80;
+    server_name epavlenko.dev www.epavlenko.dev;
+    root /var/www/epavlenko.dev;
+    index index.html;
+
+    # Gzip compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    # Angular routing
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Cache static assets
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}
+```
+
+## Project Structure
+
+```
+epavlenko-app/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── header/          # Navigation header
+│   │   │   └── footer/          # Site footer
+│   │   ├── pages/
+│   │   │   ├── home/            # Home page
+│   │   │   ├── registration/    # Registration form
+│   │   │   ├── schedule/        # Class schedule
+│   │   │   ├── coaches/         # Coach profiles
+│   │   │   ├── media/           # Media gallery
+│   │   │   └── terms/           # Terms & Conditions
+│   │   ├── app.component.*      # Root component
+│   │   ├── app.config.ts        # App configuration
+│   │   └── app.routes.ts        # Route definitions
+│   ├── assets/                  # Static assets
+│   ├── index.html               # HTML entry point
+│   ├── main.ts                  # Application bootstrap
+│   └── styles.scss              # Global styles
+├── angular.json                 # Angular configuration
+├── package.json                 # Dependencies
+├── tsconfig.json                # TypeScript config
+└── README.md                    # This file
+```
+
+## Design System
+
+### Colors
+- Primary: #FF3B3B (red)
+- Secondary: #0A0A0A (black)
+- Accent: #FFD700 (gold)
+- Background: #F8F8F8 / #FFFFFF
+
+### Typography
+- Display: Bebas Neue (headings, titles)
+- Body: IBM Plex Sans (paragraphs, UI text)
+
+### Breakpoints
+- Desktop: 1200px+
+- Tablet: 768px - 1199px
+- Mobile: < 768px
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## License
+
+© 2026 EPavlenko. All rights reserved.
+
+## Contact
+
+For questions or support:
+- Email: info@epavlenko.dev
+- Website: https://epavlenko.dev

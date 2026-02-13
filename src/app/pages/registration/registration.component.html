@@ -1,0 +1,172 @@
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title fade-in-up">REGISTRATION</h1>
+    <p class="page-subtitle fade-in-up">Start your journey to peak performance</p>
+  </div>
+</section>
+
+<section class="section registration-section">
+  <div class="container">
+    <div class="registration-container" *ngIf="!submitted">
+      <div class="form-intro">
+        <h2>Join Our Training Program</h2>
+        <p>Fill out the form below to register for our elite training programs. Our team will review your application and contact you within 24 hours.</p>
+      </div>
+
+      <form class="registration-form" (ngSubmit)="onSubmit()" #regForm="ngForm">
+        <!-- Personal Information -->
+        <div class="form-section">
+          <h3 class="form-section-title">Personal Information</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input 
+                type="text" 
+                id="firstName" 
+                name="firstName" 
+                [(ngModel)]="formData.firstName" 
+                required
+                class="form-input"
+                placeholder="Enter your first name">
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input 
+                type="text" 
+                id="lastName" 
+                name="lastName" 
+                [(ngModel)]="formData.lastName" 
+                required
+                class="form-input"
+                placeholder="Enter your last name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                [(ngModel)]="formData.email" 
+                required
+                class="form-input"
+                placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                [(ngModel)]="formData.phone" 
+                required
+                class="form-input"
+                placeholder="+1 (555) 123-4567">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input 
+              type="date" 
+              id="dateOfBirth" 
+              name="dateOfBirth" 
+              [(ngModel)]="formData.dateOfBirth"
+              class="form-input">
+          </div>
+        </div>
+
+        <!-- Training Information -->
+        <div class="form-section">
+          <h3 class="form-section-title">Training Information</h3>
+          
+          <div class="form-group">
+            <label for="program">Preferred Program *</label>
+            <select 
+              id="program" 
+              name="program" 
+              [(ngModel)]="formData.program" 
+              required
+              class="form-input">
+              <option value="">Select a program</option>
+              <option *ngFor="let program of programs" [value]="program">{{ program }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="experienceLevel">Experience Level *</label>
+            <select 
+              id="experienceLevel" 
+              name="experienceLevel" 
+              [(ngModel)]="formData.experienceLevel" 
+              required
+              class="form-input">
+              <option value="">Select your level</option>
+              <option *ngFor="let level of experienceLevels" [value]="level">{{ level }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="goals">Training Goals</label>
+            <textarea 
+              id="goals" 
+              name="goals" 
+              [(ngModel)]="formData.goals"
+              class="form-input form-textarea"
+              rows="4"
+              placeholder="Tell us about your training goals and what you hope to achieve..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="medicalConditions">Medical Conditions or Injuries</label>
+            <textarea 
+              id="medicalConditions" 
+              name="medicalConditions" 
+              [(ngModel)]="formData.medicalConditions"
+              class="form-input form-textarea"
+              rows="3"
+              placeholder="Please list any medical conditions, injuries, or physical limitations we should be aware of..."></textarea>
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="form-section">
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input 
+                type="checkbox" 
+                name="termsAccepted" 
+                [(ngModel)]="formData.termsAccepted" 
+                required>
+              <span>I accept the <a routerLink="/terms" target="_blank">Terms and Conditions</a> *</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()">
+            Submit Registration
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">
+            Reset Form
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" *ngIf="submitted">
+      <div class="success-icon">✓</div>
+      <h2>Registration Successful!</h2>
+      <p>Thank you for registering with EPavlenko. We've received your application and will contact you within 24 hours to discuss your training program.</p>
+      <p class="success-details">A confirmation email has been sent to <strong>{{ formData.email }}</strong></p>
+      <button class="btn btn-primary" (click)="resetForm()">Submit Another Registration</button>
+    </div>
+  </div>
+</section>

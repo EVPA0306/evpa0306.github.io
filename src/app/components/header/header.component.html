@@ -1,0 +1,26 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="container">
+    <nav class="nav">
+      <a routerLink="/" class="logo" (click)="closeMobileMenu()">
+        <span class="logo-text">EPAVLENKO</span>
+      </a>
+
+      <button class="mobile-toggle" (click)="toggleMobileMenu()"
+              [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'">
+        <span class="bar" [class.open]="isMobileMenuOpen"></span>
+        <span class="bar" [class.open]="isMobileMenuOpen"></span>
+        <span class="bar" [class.open]="isMobileMenuOpen"></span>
+      </button>
+
+      <ul class="nav-links" [class.open]="isMobileMenuOpen">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+               (click)="closeMobileMenu()">Home</a></li>
+        <li><a routerLink="/registration" routerLinkActive="active" (click)="closeMobileMenu()">Registration</a></li>
+        <li><a routerLink="/schedule" routerLinkActive="active" (click)="closeMobileMenu()">Schedule</a></li>
+        <li><a routerLink="/coaches" routerLinkActive="active" (click)="closeMobileMenu()">Coaches</a></li>
+        <li><a routerLink="/media" routerLinkActive="active" (click)="closeMobileMenu()">Media</a></li>
+        <li><a routerLink="/terms" routerLinkActive="active" (click)="closeMobileMenu()">Terms</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
