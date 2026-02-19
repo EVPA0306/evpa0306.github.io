@@ -1,4 +1,4 @@
-# EPavlenko - Elite Training Web Application
+# Sport Center - Elite Training Web Application
 
 A modern, responsive Angular web application for elite training and coaching services.
 
@@ -232,7 +232,7 @@ See **PAYMENT-INTEGRATION.md** for complete setup instructions.
 
 ## License
 
-© 2026 EPavlenko. All rights reserved.
+© 2026 Sport Center. All rights reserved.
 
 ## Contact
 

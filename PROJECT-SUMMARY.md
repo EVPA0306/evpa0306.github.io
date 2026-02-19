@@ -1,4 +1,4 @@
-# EPavlenko Web Application - Project Summary
+# Sport Center Web Application - Project Summary
 
 ## Overview
 

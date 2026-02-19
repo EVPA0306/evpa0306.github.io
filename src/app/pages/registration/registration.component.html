@@ -17,15 +17,15 @@
         <!-- Personal Information -->
         <div class="form-section">
           <h3 class="form-section-title">Personal Information</h3>
-          
+
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name *</label>
-              <input 
-                type="text" 
-                id="firstName" 
-                name="firstName" 
-                [(ngModel)]="formData.firstName" 
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                [(ngModel)]="formData.firstName"
                 required
                 class="form-input"
                 placeholder="Enter your first name">
@@ -33,11 +33,11 @@
 
             <div class="form-group">
               <label for="lastName">Last Name *</label>
-              <input 
-                type="text" 
-                id="lastName" 
-                name="lastName" 
-                [(ngModel)]="formData.lastName" 
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="formData.lastName"
                 required
                 class="form-input"
                 placeholder="Enter your last name">
@@ -47,11 +47,11 @@
           <div class="form-row">
             <div class="form-group">
               <label for="email">Email Address *</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                [(ngModel)]="formData.email" 
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="formData.email"
                 required
                 class="form-input"
                 placeholder="your.email@example.com">
@@ -59,11 +59,11 @@
 
             <div class="form-group">
               <label for="phone">Phone Number *</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                [(ngModel)]="formData.phone" 
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                [(ngModel)]="formData.phone"
                 required
                 class="form-input"
                 placeholder="+1 (555) 123-4567">
@@ -72,10 +72,10 @@
 
           <div class="form-group">
             <label for="dateOfBirth">Date of Birth</label>
-            <input 
-              type="date" 
-              id="dateOfBirth" 
-              name="dateOfBirth" 
+            <input
+              type="date"
+              id="dateOfBirth"
+              name="dateOfBirth"
               [(ngModel)]="formData.dateOfBirth"
               class="form-input">
           </div>
@@ -84,13 +84,13 @@
         <!-- Training Information -->
         <div class="form-section">
           <h3 class="form-section-title">Training Information</h3>
-          
+
           <div class="form-group">
             <label for="program">Preferred Program *</label>
-            <select 
-              id="program" 
-              name="program" 
-              [(ngModel)]="formData.program" 
+            <select
+              id="program"
+              name="program"
+              [(ngModel)]="formData.program"
               required
               class="form-input">
               <option value="">Select a program</option>
@@ -100,10 +100,10 @@
 
           <div class="form-group">
             <label for="experienceLevel">Experience Level *</label>
-            <select 
-              id="experienceLevel" 
-              name="experienceLevel" 
-              [(ngModel)]="formData.experienceLevel" 
+            <select
+              id="experienceLevel"
+              name="experienceLevel"
+              [(ngModel)]="formData.experienceLevel"
               required
               class="form-input">
               <option value="">Select your level</option>
@@ -113,9 +113,9 @@
 
           <div class="form-group">
             <label for="goals">Training Goals</label>
-            <textarea 
-              id="goals" 
-              name="goals" 
+            <textarea
+              id="goals"
+              name="goals"
               [(ngModel)]="formData.goals"
               class="form-input form-textarea"
               rows="4"
@@ -124,9 +124,9 @@
 
           <div class="form-group">
             <label for="medicalConditions">Medical Conditions or Injuries</label>
-            <textarea 
-              id="medicalConditions" 
-              name="medicalConditions" 
+            <textarea
+              id="medicalConditions"
+              name="medicalConditions"
               [(ngModel)]="formData.medicalConditions"
               class="form-input form-textarea"
               rows="3"
@@ -138,10 +138,10 @@
         <div class="form-section">
           <div class="form-group checkbox-group">
             <label class="checkbox-label">
-              <input 
-                type="checkbox" 
-                name="termsAccepted" 
-                [(ngModel)]="formData.termsAccepted" 
+              <input
+                type="checkbox"
+                name="termsAccepted"
+                [(ngModel)]="formData.termsAccepted"
                 required>
               <span>I accept the <a routerLink="/terms" target="_blank">Terms and Conditions</a> *</span>
             </label>
@@ -164,7 +164,7 @@
     <div class="success-message" *ngIf="submitted">
       <div class="success-icon">✓</div>
       <h2>Registration Successful!</h2>
-      <p>Thank you for registering with EPavlenko. We've received your application and will contact you within 24 hours to discuss your training program.</p>
+      <p>Thank you for registering with Sport Center. We've received your application and will contact you within 24 hours to discuss your training program.</p>
       <p class="success-details">A confirmation email has been sent to <strong>{{ formData.email }}</strong></p>
       <button class="btn btn-primary" (click)="resetForm()">Submit Another Registration</button>
     </div>

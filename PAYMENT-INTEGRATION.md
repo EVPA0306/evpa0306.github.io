@@ -2,7 +2,7 @@
 
 ## Overview
 
-The EPavlenko app now includes a complete payment system with support for:
+The Sport Center app now includes a complete payment system with support for:
 - **Stripe** - Credit/Debit card payments
 - **PayPal** - PayPal payments
 
@@ -325,7 +325,7 @@ Send confirmation emails after successful payments:
 async function sendPaymentConfirmation(email, details) {
   await sendEmail({
     to: email,
-    subject: 'Payment Confirmation - EPavlenko Training',
+    subject: 'Payment Confirmation - Sport Center Training',
     html: `
       <h1>Payment Successful!</h1>
       <p>Thank you for your purchase.</p>

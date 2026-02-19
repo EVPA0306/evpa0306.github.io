@@ -12,5 +12,5 @@ import { FooterComponent } from './components/footer/footer.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'EPavlenko';
+  title = 'Sport Center';
 }
