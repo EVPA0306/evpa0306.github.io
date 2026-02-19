@@ -50,6 +50,11 @@
     }
   }
 
+  img {
+    height: 50px;
+    width: auto;
+  }
+
   &:hover .logo-text::after {
     width: 100%;
   }
