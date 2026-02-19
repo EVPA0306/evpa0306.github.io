@@ -20,21 +20,21 @@ export class ScheduleComponent {
   scheduleData: ScheduleRow[] = [
     {
       date: 'March 19',
-      day: 'Thursday',
+      day: 'Thu',
       groupA: '05:40 PM - 07:10 PM',
       groupB: '04:00 PM - 05:30 PM',
       arena: 'Sport Stable Ice Arena'
     },
     {
       date: 'March 20',
-      day: 'Friday',
+      day: 'Fri',
       groupA: '06:40 PM - 08:10 PM',
       groupB: '05:00 PM - 06:30 PM',
       arena: 'Sport Stable Ice Arena'
     },
     {
       date: 'March 21',
-      day: 'Saturday',
+      day: 'Sat',
       groupA: '09:00 AM - 10:30 AM ',
       groupB: '10:40 AM - 12:10 PM',
       arena: 'Sport Stable Ice Arena'
