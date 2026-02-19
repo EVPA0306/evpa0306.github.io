@@ -28,7 +28,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/CNAME"
+              "src/CNAME",
+              {
+                "glob": ".htaccess",
+                "input": "./",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.scss"
