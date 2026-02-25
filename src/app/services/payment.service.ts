@@ -1,6 +1,24 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 declare var Stripe: any;
+
+export interface CheckoutRequest {
+  items: CheckoutItem[];
+  customerEmail?: string;
+}
+
+
+export interface CheckoutItem {
+  name: string;
+  description: string;
+  amount: number;          // In cents (e.g. 2000 = $20.00)
+  quantity?: number;
+  currency?: string;
+}
+
 
 export interface PaymentProduct {
   id: string;
@@ -18,11 +36,13 @@ export interface PaymentProduct {
 })
 export class PaymentService {
   private stripe: any;
-  
-  // Replace with your actual Stripe publishable key
-  private stripePublishableKey = 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE';
+  private backendUrl: string;
+  private stripePublishableKey: string;
 
-  constructor() {
+  constructor(private http: HttpClient) {
+    // Load configuration from environment
+    this.backendUrl = environment.apiBaseUrl;
+    this.stripePublishableKey = environment.stripe.publishableKey;
     this.loadStripe();
   }
 
@@ -37,16 +57,33 @@ export class PaymentService {
     }
   }
 
+  async verifyPayment(sessionId: string): Promise<any> {
+    try {
+      const response = await this.callBackendAPI(environment.apiEndpoints.verifyPayment, {
+        sessionId}, 'GET');
+      return response;
+    } catch (error) {
+      console.error('Payment verification error:', error);
+      throw error;
+    }
+  }
+
   async createCheckoutSession(product: PaymentProduct): Promise<void> {
     try {
       // In a real application, this would call your backend API
       // which creates a Stripe Checkout session and returns the session ID
-      const response = await this.callBackendAPI('/api/create-checkout-session', {
-        productId: product.id,
-        productName: product.name,
-        price: product.price,
-        currency: product.currency
-      });
+      const response = await this.callBackendAPI(environment.apiEndpoints.createCheckoutSession, {
+        customerEmail: 'kivcus@gmail.com',
+        items: [
+          {
+            name: product.id,
+            description: product.name,
+            amount: product.price * 100, // Stripe uses cents
+            currency: product.currency,
+            quantity: 1
+          }
+        ]
+      }, 'POST');
 
       if (response.sessionId && this.stripe) {
         // Redirect to Stripe Checkout
@@ -74,19 +111,19 @@ export class PaymentService {
       // In a real application, this would:
       // 1. Call your backend to create a payment intent
       // 2. Confirm the payment with the card details
-      const response = await this.callBackendAPI('/api/create-payment-intent', {
+      const response = await this.callBackendAPI(environment.apiEndpoints.createPaymentIntent, {
         amount: product.price * 100, // Stripe uses cents
         currency: product.currency,
         productId: product.id
       });
 
       if (response.clientSecret) {
-        const result = await this.stripe.confirmCardPayment(response.clientSecret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              name: 'Customer Name' // Should come from form
-            }
+        // Using modern confirmPayment API instead of deprecated confirmCardPayment
+        const result = await this.stripe.confirmPayment({
+          elements: cardElement,
+          clientSecret: response.clientSecret,
+          confirmParams: {
+            return_url: window.location.origin + '/payment-success'
           }
         });
 
@@ -102,34 +139,27 @@ export class PaymentService {
     }
   }
 
-  private async callBackendAPI(endpoint: string, data: any): Promise<any> {
-    // DEMO MODE: Return mock data
-    // In production, replace this with actual HTTP calls to your backend
-    console.log('Demo Mode - Would call:', endpoint, data);
-    
-    if (endpoint === '/api/create-checkout-session') {
-      // Simulate backend response with demo session ID
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            sessionId: 'cs_test_demo_session_id'
-          });
-        }, 500);
-      });
-    }
+  private async callBackendAPI(endpoint: string, data: any, method: 'GET' | 'POST' = 'POST'): Promise<any> {
+    var url = `${this.backendUrl}${endpoint}`;
 
-    if (endpoint === '/api/create-payment-intent') {
-      // Simulate backend response with demo client secret
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            clientSecret: 'pi_test_demo_client_secret'
-          });
-        }, 500);
-      });
-    }
+    try {
+      let response: any;
 
-    throw new Error('Backend API not implemented in demo mode');
+      if (method === 'GET') {
+        console.log(`Calling backend API: ${endpoint} [GET]`);
+        url = url.replace('{sessionId}', data.sessionId); // Replace path parameter if needed
+        response = await firstValueFrom(this.http.get<any>(url));
+      } else {
+        console.log(`Calling backend API: ${endpoint} [POST] with data:`, data);
+        response = await firstValueFrom(this.http.post<any>(url, data));
+      }
+
+      return response;
+    } catch (error: any) {
+      console.error('Backend API error:', error);
+      const errorMessage = error?.error?.message || error?.message || 'Backend API call failed';
+      throw new Error(errorMessage);
+    }
   }
 
   // PayPal Integration Methods
