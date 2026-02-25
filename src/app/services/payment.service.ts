@@ -73,7 +73,7 @@ export class PaymentService {
       // In a real application, this would call your backend API
       // which creates a Stripe Checkout session and returns the session ID
       const response = await this.callBackendAPI(environment.apiEndpoints.createCheckoutSession, {
-        customerEmail: 'kivcus@gmail.com',
+        customerEmail: 'test@gmail.com',
         items: [
           {
             name: product.id,
